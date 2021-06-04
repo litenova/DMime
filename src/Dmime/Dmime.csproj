@@ -3,10 +3,19 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Mohammad ShafieZadeh</Authors>
+        <Title>DMime</Title>
+        <Description>A fast and efficient library to detect a given file's MIME type based on the file content regardless of file extension</Description>
+        <PackageProjectUrl>https://github.com/litenova/DMime</PackageProjectUrl>
+        <PackageIcon>logo_128x128.png</PackageIcon>
+        <RepositoryUrl>https://github.com/litenova/DMime</RepositoryUrl>
+        <PackageTags>mime-type;file-detector;csharp</PackageTags>
+        <Version>0.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Signatures" />
+        <None Include="..\..\assets\logo\logo_128x128.png" Pack="true" PackagePath=""/>
     </ItemGroup>
-
+    
 </Project>
