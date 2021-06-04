@@ -84,3 +84,13 @@ You can inject `IMimeDetector` to your desired services to use DMime
         }
     }
 ```
+
+## Sponsor 
+
+Thanks to JetBrains for supporting open source projects by providing JetBrains Rider IDE for free.
+
+[![alt text][image]][hyperlink]
+
+[hyperlink]: https://www.jetbrains.com/
+[image]: assets/jetbrains-variant-4.png
+
