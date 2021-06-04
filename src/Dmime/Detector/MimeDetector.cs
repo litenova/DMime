@@ -15,17 +15,17 @@ namespace Dmime.Detector
             _registry = registry;
         }
 
-        public IDetectionResult Detect(Stream fileContent)
+        public async Task<IDetectionResult> DetectAsync(Stream fileContent)
         {
             foreach (var signature in _registry)
             {
                 fileContent.Position = 0;
 
-                var bytesToDetectType = new byte[signature.MagicBytes.Length];
+                var bytesToDetectType = new byte[signature.MagicBytes.Length + signature.Offset];
 
-                fileContent.Read(bytesToDetectType, signature.Offset, signature.MagicBytes.Length);
+                await fileContent.ReadAsync(bytesToDetectType, 0, signature.MagicBytes.Length + signature.Offset);
 
-                if (CompareBytes(signature.MagicBytes, bytesToDetectType))
+                if (CompareBytes(signature.MagicBytes, bytesToDetectType[signature.Offset..]))
                 {
                     return new DetectionResult(signature.FileExtension, signature.MimeType);
                 }
