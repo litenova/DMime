@@ -8,11 +8,11 @@ namespace Dmime.Extensions
 {
     public static class StreamExtensions
     {
-        public static IDetectionResult DetectMimeType(this Stream stream)
+        public static Task<IDetectionResult> DetectMimeType(this Stream stream)
         {
             var detector = new MimeDetector(SignatureRegistryAccessor.Registry);
 
-            return detector.Detect(stream);
+            return detector.DetectAsync(stream);
         } 
     }
 }
