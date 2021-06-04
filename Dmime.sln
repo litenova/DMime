@@ -5,6 +5,8 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	LICENSE = LICENSE
 	README.md = README.md
+	.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	.github\workflows\publish-packages.yml = .github\workflows\publish-packages.yml
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8363970D-9F7D-40E8-852F-0FA691072E6D}"
@@ -17,6 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B39C3093
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dmime.UnitTests", "tests\Dmime.UnitTests\Dmime.UnitTests.csproj", "{9A8BAD5D-674B-4DE4-B3D1-147CDB97B3B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{E9181CB7-47F0-4C04-BF23-DD036AB368DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logo", "logo", "{2B2F0566-032B-4931-8F0C-E79149F096E3}"
+ProjectSection(SolutionItems) = preProject
+	assets\logo\logo_128x128.png = assets\logo\logo_128x128.png
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +35,7 @@ Global
 		{13C490BB-6F4D-428D-8F1B-9A7CFF379D94} = {8363970D-9F7D-40E8-852F-0FA691072E6D}
 		{73BE50B2-45CC-4BB1-B2AD-E3998AD671B0} = {8363970D-9F7D-40E8-852F-0FA691072E6D}
 		{9A8BAD5D-674B-4DE4-B3D1-147CDB97B3B9} = {B39C3093-016C-4CAE-9FBB-F3A5740E319F}
+		{2B2F0566-032B-4931-8F0C-E79149F096E3} = {E9181CB7-47F0-4C04-BF23-DD036AB368DB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{13C490BB-6F4D-428D-8F1B-9A7CFF379D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
