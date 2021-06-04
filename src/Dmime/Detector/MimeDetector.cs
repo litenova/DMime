@@ -20,7 +20,7 @@ namespace Dmime.Detector
             foreach (var signature in _registry)
             {
                 fileContent.Position = 0;
-
+                
                 var bytesToDetectType = new byte[signature.MagicBytes.Length + signature.Offset];
 
                 await fileContent.ReadAsync(bytesToDetectType, 0, signature.MagicBytes.Length + signature.Offset);
