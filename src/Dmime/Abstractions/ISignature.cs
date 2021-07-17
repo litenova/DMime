@@ -1,10 +1,10 @@
+using System.Collections.Generic;
+
 namespace Dmime.Abstractions
 {
     public interface ISignature
     {
-        byte[] MagicBytes { get; }
-
-        int Offset { get; }
+        IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
 
         string FileExtension { get; }
         
