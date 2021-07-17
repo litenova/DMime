@@ -2,6 +2,7 @@ using Dmime.Abstractions;
 using Dmime.Signatures.Audios;
 using Dmime.Signatures.Documents;
 using Dmime.Signatures.Images;
+using Dmime.Signatures.Others;
 using Dmime.Signatures.Videos;
 
 namespace Dmime.Registry
@@ -29,6 +30,9 @@ namespace Dmime.Registry
             
             // Videos
             Registry.Register(new Mp4Signature());
+            
+            // Others
+            Registry.Register(new ZipSignature());
         }
     }
 }

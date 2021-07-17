@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{E9181C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logo", "logo", "{2B2F0566-032B-4931-8F0C-E79149F096E3}"
 ProjectSection(SolutionItems) = preProject
-	assets\logo\logo_128x128.png = assets\logo\logo_128x128.png
+	assets\logo\logo.png = assets\logo\logo.png
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{85DFDA1C-6BF4-49B8-AA09-343D0BDC9449}"

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Dmime.Abstractions;
@@ -19,15 +20,20 @@ namespace Dmime.Detector
         {
             foreach (var signature in _registry)
             {
-                fileContent.Position = 0;
-                
-                var bytesToDetectType = new byte[signature.MagicBytes.Length + signature.Offset];
-
-                await fileContent.ReadAsync(bytesToDetectType, 0, signature.MagicBytes.Length + signature.Offset);
-
-                if (CompareBytes(signature.MagicBytes, bytesToDetectType[signature.Offset..]))
+                foreach (var magicByte in signature.MagicBytes)
                 {
-                    return new DetectionResult(signature.FileExtension, signature.MimeType);
+                    fileContent.Position = 0;
+
+                    var numberOfBytesNeededToDetect = magicByte.Bytes.Length + magicByte.Offset;
+                    
+                    var bytesToDetectType = new byte[numberOfBytesNeededToDetect];
+
+                    await fileContent.ReadAsync(bytesToDetectType, 0, numberOfBytesNeededToDetect);
+
+                    if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
+                    {
+                        return new DetectionResult(signature.FileExtension, signature.MimeType);
+                    }    
                 }
             }
 
