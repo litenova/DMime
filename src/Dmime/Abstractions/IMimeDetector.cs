@@ -6,4 +6,6 @@ namespace Dmime.Abstractions;
 public interface IMimeDetector
 {
     Task<IDetectionResult> DetectAsync(Stream fileContent);
+
+    IDetectionResult Detect(Stream fileContent);
 }

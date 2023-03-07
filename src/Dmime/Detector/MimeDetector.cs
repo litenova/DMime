@@ -1,56 +1,78 @@
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Dmime.Abstractions;
 using Dmime.Exceptions;
 using Dmime.Models;
 
-namespace Dmime.Detector
+namespace Dmime.Detector;
+
+public class MimeDetector : IMimeDetector
 {
-    public class MimeDetector : IMimeDetector
+    private readonly ISignatureRegistry _registry;
+
+    public MimeDetector(ISignatureRegistry registry)
     {
-        private readonly ISignatureRegistry _registry;
+        _registry = registry;
+    }
 
-        public MimeDetector(ISignatureRegistry registry)
+    public async Task<IDetectionResult> DetectAsync(Stream fileContent)
+    {
+        foreach (var signature in _registry)
         {
-            _registry = registry;
-        }
-
-        public async Task<IDetectionResult> DetectAsync(Stream fileContent)
-        {
-            foreach (var signature in _registry)
+            foreach (var magicByte in signature.MagicBytes)
             {
-                foreach (var magicByte in signature.MagicBytes)
+                fileContent.Position = 0;
+
+                var numberOfBytesNeededToDetect = magicByte.Bytes.Length + magicByte.Offset;
+
+                var bytesToDetectType = new byte[numberOfBytesNeededToDetect];
+
+                await fileContent.ReadAsync(bytesToDetectType, 0, numberOfBytesNeededToDetect);
+
+                if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
                 {
-                    fileContent.Position = 0;
-
-                    var numberOfBytesNeededToDetect = magicByte.Bytes.Length + magicByte.Offset;
-                    
-                    var bytesToDetectType = new byte[numberOfBytesNeededToDetect];
-
-                    await fileContent.ReadAsync(bytesToDetectType, 0, numberOfBytesNeededToDetect);
-
-                    if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
-                    {
-                        return new DetectionResult(signature.FileExtensions, signature.MimeType);
-                    }    
+                    return new DetectionResult(signature.FileExtensions, signature.MimeType);
                 }
             }
-
-            throw new FileNotDetectedException();
         }
 
-        private bool CompareBytes(byte[] magicBytes, byte[] bytesToDetectType)
+        throw new FileNotDetectedException();
+    }
+
+    public IDetectionResult Detect(Stream fileContent)
+    {
+        foreach (var signature in _registry)
         {
-            for (int i = 0; i < magicBytes.Length; i += 1)
+            foreach (var magicByte in signature.MagicBytes)
             {
-                if (magicBytes[i] != bytesToDetectType[i])
+                fileContent.Position = 0;
+
+                var numberOfBytesNeededToDetect = magicByte.Bytes.Length + magicByte.Offset;
+
+                var bytesToDetectType = new byte[numberOfBytesNeededToDetect];
+
+                fileContent.Read(bytesToDetectType, 0, numberOfBytesNeededToDetect);
+
+                if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
                 {
-                    return false;
+                    return new DetectionResult(signature.FileExtensions, signature.MimeType);
                 }
             }
-
-            return true;
         }
+
+        throw new FileNotDetectedException();
+    }
+
+    private bool CompareBytes(byte[] magicBytes, byte[] bytesToDetectType)
+    {
+        for (var i = 0; i < magicBytes.Length; i += 1)
+        {
+            if (magicBytes[i] != bytesToDetectType[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

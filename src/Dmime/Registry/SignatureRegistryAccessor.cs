@@ -29,6 +29,7 @@ public static class SignatureRegistryAccessor
         Registry.Register(new WebpSignature());
         Registry.Register(new IcoSignature());
         Registry.Register(new WmfSignature());
+        Registry.Register(new TiffSignature());
         Registry.Register(new EmfSignature());
             
         // Videos
