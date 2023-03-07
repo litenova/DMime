@@ -53,6 +53,17 @@ namespace Dmime.UnitTests
         }
         
         [Fact]
+        public async Task Wmf_should_be_detected_correctly()
+        {
+            FileStream stream = File.OpenRead(Path.Combine("Files","mwf-sample.wmf"));
+
+            var result = await stream.DetectMimeType();
+
+            result.MimeType.Should().Be("image/wmf");
+            result.FileExtension.Should().Be(".wmf");
+        }
+        
+        [Fact]
         public async Task mp4_should_be_detected_correctly()
         {
             FileStream stream = File.OpenRead(Path.Combine("Files","mp4-sample.mp4"));
