@@ -85,5 +85,16 @@ namespace Dmime.UnitTests
             result.MimeType.Should().Be("audio/mpeg");
             result.FileExtension.Should().Be(".mp3");
         }
+        
+        [Fact]
+        public async Task ico_should_be_detected_correctly()
+        {
+            FileStream stream = File.OpenRead(Path.Combine("Files","ico-sample.ico"));
+            
+            var result = await stream.DetectMimeType();
+            
+            result.MimeType.Should().Be("image/x-icon");
+            result.FileExtension.Should().Be(".ico");
+        }
     }
 }

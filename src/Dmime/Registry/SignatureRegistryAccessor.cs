@@ -27,6 +27,7 @@ namespace Dmime.Registry
             Registry.Register(new JpegSignature());
             Registry.Register(new PngSignature());
             Registry.Register(new WebpSignature());
+            Registry.Register(new IcoSignature());
             
             // Videos
             Registry.Register(new Mp4Signature());
