@@ -1,9 +1,10 @@
-namespace Dmime.Abstractions
+using System.Collections.Generic;
+
+namespace Dmime.Abstractions;
+
+public interface IDetectionResult
 {
-    public interface IDetectionResult
-    {
-        string FileExtension { get; }
+    IReadOnlyCollection<string> FileExtensions { get; }
         
-        string MimeType { get; }
-    }
+    string MimeType { get; }
 }

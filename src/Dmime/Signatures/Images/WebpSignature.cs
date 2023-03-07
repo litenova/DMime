@@ -2,29 +2,28 @@
 using Dmime.Abstractions;
 using Dmime.Models;
 
-namespace Dmime.Signatures.Images
+namespace Dmime.Signatures.Images;
+
+internal class WebpSignature : ISignature
 {
-    internal class WebpSignature : ISignature
+    public string MimeType { get; }
+
+    public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+
+    public IReadOnlyCollection<string> FileExtensions { get; }
+
+
+    public WebpSignature()
     {
-        public string MimeType { get; }
-
-        public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
-
-        public string FileExtension { get; }
-
-
-        public WebpSignature()
+        MimeType = "image/webp";
+        FileExtensions = new[] {".webp"};
+        MagicBytes = new[]
         {
-            MimeType = "image/webp";
-            FileExtension = ".webp";
-            MagicBytes = new[]
+            new MagicBytes
             {
-                new MagicBytes
-                {
-                    Bytes = new byte[] {0x52, 0x49, 0x46, 0x46},
-                    Offset = 0,
-                }
-            };
-        }
+                Bytes = new byte[] {0x52, 0x49, 0x46, 0x46},
+                Offset = 0,
+            }
+        };
     }
 }

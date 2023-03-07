@@ -8,14 +8,14 @@ public class IcoSignature : ISignature
 {
     public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
 
-    public string FileExtension { get; }
+    public IReadOnlyCollection<string> FileExtensions { get; }
 
     public string MimeType { get; }
 
     public IcoSignature()
     {
         MimeType = "image/x-icon";
-        FileExtension = ".ico";
+        FileExtensions = new[] {".ico", ".spl"};
         MagicBytes = new[]
         {
             new MagicBytes

@@ -8,14 +8,14 @@ public class EmfSignature : ISignature
 {
     public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
 
-    public string FileExtension { get; }
+    public IReadOnlyCollection<string> FileExtensions { get; }
 
     public string MimeType { get; }
 
     public EmfSignature()
     {
         MimeType = "image/emf";
-        FileExtension = ".emf";
+        FileExtensions = new[] {".emf"};
         MagicBytes = new[]
         {
             new MagicBytes

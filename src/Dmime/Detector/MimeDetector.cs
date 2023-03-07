@@ -32,7 +32,7 @@ namespace Dmime.Detector
 
                     if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
                     {
-                        return new DetectionResult(signature.FileExtension, signature.MimeType);
+                        return new DetectionResult(signature.FileExtensions, signature.MimeType);
                     }    
                 }
             }

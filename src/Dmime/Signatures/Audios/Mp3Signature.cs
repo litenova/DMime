@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using Dmime.Abstractions;
 using Dmime.Models;
 
-namespace Dmime.Signatures.Audios
+namespace Dmime.Signatures.Audios;
+
+internal class Mp3Signature : ISignature
 {
-    internal class Mp3Signature : ISignature
+    public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+
+    public IReadOnlyCollection<string> FileExtensions { get; }
+
+    public string MimeType { get; set; }
+
+    public Mp3Signature()
     {
-        public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
-
-        public string FileExtension { get; }
-
-        public string MimeType { get; set; }
-
-
-        public Mp3Signature()
+        MagicBytes = new[]
         {
-            MagicBytes = new[]
+            new MagicBytes
             {
-                new MagicBytes
-                {
-                    Bytes = new Byte[] {0x49, 0x44, 0x33},
-                    Offset = 0
-                }
-            };
-            MimeType = "audio/mpeg";
-            FileExtension = ".mp3";
-        }
+                Bytes = new byte[] {0x49, 0x44, 0x33},
+                Offset = 0
+            }
+        };
+        MimeType = "audio/mpeg";
+        FileExtensions = new[] {".mp3"};
     }
 }

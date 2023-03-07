@@ -2,28 +2,27 @@
 using Dmime.Abstractions;
 using Dmime.Models;
 
-namespace Dmime.Signatures.Images
+namespace Dmime.Signatures.Images;
+
+internal class BmpSignature : ISignature
 {
-    internal class BmpSignature : ISignature
+    public string MimeType { get; }
+
+    public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+
+    public IReadOnlyCollection<string> FileExtensions { get; }
+
+    public BmpSignature()
     {
-        public string MimeType { get; }
-
-        public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
-
-        public string FileExtension { get; }
-
-        public BmpSignature()
+        MimeType = "image/bmp";
+        FileExtensions = new[] {".bmp", ".dib"};
+        MagicBytes = new[]
         {
-            MimeType = "image/bmp";
-            FileExtension = ".bmp";
-            MagicBytes = new[]
+            new MagicBytes
             {
-                new MagicBytes
-                {
-                    Bytes = new byte[] {0x42, 0x4D},
-                    Offset = 0
-                }
-            };
-        }
+                Bytes = new byte[] {0x42, 0x4D},
+                Offset = 0
+            }
+        };
     }
 }

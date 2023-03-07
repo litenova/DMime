@@ -1,17 +1,18 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Dmime.Abstractions;
 
-namespace Dmime.Models
+namespace Dmime.Models;
+
+internal class DetectionResult : IDetectionResult
 {
-    internal class DetectionResult : IDetectionResult
+    public DetectionResult(IEnumerable<string> fileExtensions, string mimeType)
     {
-        public DetectionResult(string fileExtension, string mimeType)
-        {
-            FileExtension = fileExtension;
-            MimeType = mimeType;
-        }
-
-        public string FileExtension { get; }
-
-        public string MimeType { get; }
+        FileExtensions = new List<string>(fileExtensions).AsReadOnly();
+        MimeType = mimeType;
     }
+
+    public IReadOnlyCollection<string> FileExtensions { get; }
+
+    public string MimeType { get; }
 }

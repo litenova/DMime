@@ -1,8 +1,7 @@
-namespace Dmime.Abstractions
+namespace Dmime.Abstractions;
+
+public interface IMagicBytes
 {
-    public interface IMagicBytes
-    {
-        int Offset { get; }
-        byte[] Bytes { get; }
-    }
+    int Offset { get; }
+    byte[] Bytes { get; }
 }

@@ -2,28 +2,27 @@
 using Dmime.Abstractions;
 using Dmime.Models;
 
-namespace Dmime.Signatures.Documents
+namespace Dmime.Signatures.Documents;
+
+public class PdfSignature : ISignature
 {
-    public class PdfSignature : ISignature
+    public string MimeType { get; }
+
+    public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+
+    public IReadOnlyCollection<string> FileExtensions { get; }
+
+    public PdfSignature()
     {
-        public string MimeType { get; }
-
-        public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
-
-        public string FileExtension { get; }
-
-        public PdfSignature()
+        MimeType = "application/pdf";
+        FileExtensions = new[] {".pdf"};
+        MagicBytes = new[]
         {
-            MimeType = "application/pdf";
-            FileExtension = ".pdf";
-            MagicBytes = new[]
+            new MagicBytes
             {
-                new MagicBytes
-                {
-                    Bytes = new byte[] {0x25, 0x50, 0x44, 0x46, 0x2d},
-                    Offset = 0
-                }
-            };
-        }
+                Bytes = new byte[] {0x25, 0x50, 0x44, 0x46, 0x2d},
+                Offset = 0
+            }
+        };
     }
 }

@@ -1,12 +1,11 @@
 using System;
 
-namespace Dmime.Exceptions
+namespace Dmime.Exceptions;
+
+[Serializable]
+public class FileNotDetectedException : Exception
 {
-    [Serializable]
-    public class FileNotDetectedException : Exception
+    public FileNotDetectedException() : base("The type of file could not be detected")
     {
-        public FileNotDetectedException() : base("The type of file could not be detected")
-        {
-        }
     }
 }

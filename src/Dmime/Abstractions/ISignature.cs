@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 
-namespace Dmime.Abstractions
-{
-    public interface ISignature
-    {
-        IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+namespace Dmime.Abstractions;
 
-        string FileExtension { get; }
+public interface ISignature
+{
+    IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
+
+    IReadOnlyCollection<string> FileExtensions { get; }
         
-        string MimeType { get; }
-    }
+    string MimeType { get; }
 }
