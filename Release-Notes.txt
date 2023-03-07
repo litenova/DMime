@@ -1,0 +1,3 @@
+v.0.3.0
+
+⦁ Upgrade to .NET 7

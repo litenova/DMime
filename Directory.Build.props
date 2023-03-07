@@ -1,0 +1,24 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Authors>Mohammad ShafieZadeh</Authors>
+        <PackageTags>mime-type;file-detector;csharp</PackageTags>
+        <Version>0.3.0</Version>
+        <PackageIcon>logo.png</PackageIcon>
+        <Description>A fast and efficient library to detect a given file's MIME type based on the file content regardless of file extension</Description>
+        <PackageProjectUrl>https://github.com/litenova/DMime</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/litenova/DMime</RepositoryUrl>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(SolutionDir)\Release-Notes.txt"))</PackageReleaseNotes>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Nullable>disable</Nullable>
+        <IsTrimmable>false</IsTrimmable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="../../assets/logo/logo.png" Pack="true" PackagePath=""/>
+        <InternalsVisibleTo Include="DMime.UnitTests"/>
+    </ItemGroup>
+
+</Project>
