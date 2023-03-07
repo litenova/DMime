@@ -64,6 +64,17 @@ namespace Dmime.UnitTests
         }
         
         [Fact]
+        public async Task Tiff_should_be_detected_correctly()
+        {
+            FileStream stream = File.OpenRead(Path.Combine("Files","tiff-sample.tiff"));
+
+            var result = await stream.DetectMimeType();
+
+            result.MimeType.Should().Be("image/tiff");
+            result.FileExtension.Should().Be(".tiff");
+        }
+        
+        [Fact]
         public async Task mp4_should_be_detected_correctly()
         {
             FileStream stream = File.OpenRead(Path.Combine("Files","mp4-sample.mp4"));
