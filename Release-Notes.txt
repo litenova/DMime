@@ -1,3 +1,7 @@
+v.1.0.0
+
+⦁ Add synchronous detect method version 
+
 v.0.4.0
 
 ⦁ Add support for .Ico, .Wmf, .Emf and Tiff formats
