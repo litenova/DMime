@@ -1,5 +1,5 @@
 # Dmime
-[![.NET 5 CI](https://github.com/litenova/Dmime/actions/workflows/dotnet.yml/badge.svg)](https://github.com/litenova/Dmime/actions/workflows/dotnet.yml)
+[![CI/CD](https://github.com/litenova/DMime/actions/workflows/publish-packages.yml/badge.svg)](https://github.com/litenova/DMime/actions/workflows/publish-packages.yml)
 [![NuGet](https://img.shields.io/nuget/vpre/Dmime.svg)](https://www.nuget.org/packages/Dmime)
 
 
@@ -18,6 +18,10 @@ A fast and efficient library to detect a given file's MIME type based on the fil
     * WEBP
     * PDF
     * MP3
+    * EMF
+    * TIFF
+    * ICO
+    * WMF
 
 ## Installation
 
