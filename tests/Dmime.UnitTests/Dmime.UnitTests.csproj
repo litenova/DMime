@@ -3,6 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <IsPackable>false</IsPackable>
+
+        <!-- The Properties Below Added Due to the Converlet Known Issue with .NET 7 SDK        https://github.com/coverlet-coverage/coverlet/issues/1391 -->
+
+        <CollectCoverage>true</CollectCoverage>
+        <CoverletOutputFormat>lcov</CoverletOutputFormat>
+        <CoverletOutput>../../coverage.info</CoverletOutput>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +18,10 @@
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.msbuild" Version="3.2.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="coverlet.collector" Version="3.2.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

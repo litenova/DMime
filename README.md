@@ -1,6 +1,7 @@
 # Dmime
 [![CI/CD](https://github.com/litenova/DMime/actions/workflows/publish-packages.yml/badge.svg)](https://github.com/litenova/DMime/actions/workflows/publish-packages.yml)
 [![NuGet](https://img.shields.io/nuget/vpre/Dmime.svg)](https://www.nuget.org/packages/Dmime)
+[![Coverage Status](https://coveralls.io/repos/github/litenova/DMime/badge.svg?branch=main)](https://coveralls.io/github/litenova/DMime?branch=main)
 
 
 A fast and efficient library to detect a given file's MIME type based on the file content regardless of file extension.
