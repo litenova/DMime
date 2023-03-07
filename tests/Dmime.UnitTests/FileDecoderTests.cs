@@ -96,5 +96,16 @@ namespace Dmime.UnitTests
             result.MimeType.Should().Be("image/x-icon");
             result.FileExtension.Should().Be(".ico");
         }
+        
+        [Fact]
+        public async Task emf_should_be_detected_correctly()
+        {
+            FileStream stream = File.OpenRead(Path.Combine("Files","emf-sample.emf"));
+            
+            var result = await stream.DetectMimeType();
+            
+            result.MimeType.Should().Be("image/emf");
+            result.FileExtension.Should().Be(".emf");
+        }
     }
 }
