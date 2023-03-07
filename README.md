@@ -52,7 +52,7 @@ and configure your desired as below in the `ConfigureServices` method of `Startu
 
 ## How to Use
 
-###Extension Method 
+### Extension Method 
 Dmime provides a Extension method to `Stream` and `byte[]` types.
 
 ```c#
