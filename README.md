@@ -23,32 +23,6 @@ A fast and efficient library to detect a given file's MIME type based on the fil
     * ICO
     * WMF
 
-## Installation
-
-Depending on your usage, follow one of the guidelines below.
-
-### Microsoft Dependency Injection (ASP.NET Core)
-
-Install with NuGet:
-
-```
-Install-Package Dmime
-Install-Package Dmime.Extensions.MicrosoftDependencyInjection
-```
-
-or with .NET CLI:
-
-```
-dotnet add package Dmime
-dotnet add package Dmime.Extensions.MicrosoftDependencyInjection
-```
-
-and configure your desired as below in the `ConfigureServices` method of `Startup.cs`:
-
-```c#
-    services.AddMimeDetector();
-```
-
 ## How to Use
 
 ### Extension Method
@@ -63,9 +37,9 @@ Then use the `DetectMimeTypeAsync` or `DetectMimeType` extension methods on any 
 
 ```c#
     // an unkown file without extension
-    FileStream stream = File.OpenRead("webp-sample-550w-404h");
+FileStream stream = File.OpenRead("webp-sample-550w-404h");
 
-    var result = await stream.DetectMimeTypeAsync(); // result = image/webp
+var result = await stream.DetectMimeTypeAsync(); // result = image/webp
 ```
 
 ### Dependency
@@ -76,30 +50,36 @@ Install the `Dmime.Extensions.MicrosoftDependencyInjection` package:
 dotnet add package Dmime.Extensions.MicrosoftDependencyInjection
 ```
 
+Register the dependency into ASP.NET Core DI container:
+
+```c#
+services.AddMimeDetector();
+```
+
 Then inject the `IMimeDetector` to your desired class and use the `DetectAsync` or `Detect` methods accordingly.
 
 ```c#
-    [ApiController]
-    [Route("[controller]")]
-    public class UploadController
-    {
-        private readonly IMimeDetector _mimeDetector;
-
-        public UploadController(IMimeDetector mimeDetector)
-        {
-            _mimeDetector = mimeDetector;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SendNotification(IFormFile formFile)
-        {
-            var streamContent = formFile.OpenReadStream();
-                    
-            var result = await _mimeDetector.DetectMimeTypeAsync(streamContent);
-
-            return Ok(result);
-        }
-    }
+  [ApiController]
+  [Route("[controller]")]
+  public class UploadController
+  {
+      private readonly IMimeDetector _mimeDetector;
+  
+      public UploadController(IMimeDetector mimeDetector)
+      {
+          _mimeDetector = mimeDetector;
+      }
+  
+      [HttpPost]
+      public async Task<IActionResult> SendNotification(IFormFile formFile)
+      {
+          var streamContent = formFile.OpenReadStream();
+                  
+          var result = await _mimeDetector.DetectMimeTypeAsync(streamContent);
+  
+          return Ok(result);
+      }
+  }
 ```
 
 ## Sponsor 
