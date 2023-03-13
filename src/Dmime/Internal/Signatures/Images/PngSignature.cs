@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Videos;
+namespace Dmime.Internal.Signatures.Images;
 
-public class Mp4Signature : ISignature
+public class PngSignature : ISignature
 {
     public string MimeType { get; }
 
@@ -12,17 +11,16 @@ public class Mp4Signature : ISignature
 
     public IReadOnlyCollection<string> FileExtensions { get; }
 
-
-    public Mp4Signature()
+    public PngSignature()
     {
-        MimeType = "video/mp4";
-        FileExtensions = new[] {".mp4"};
+        MimeType = "image/png";
+        FileExtensions = new[] {".png"};
         MagicBytes = new[]
         {
             new MagicBytes
             {
-                Bytes = new byte[] {0x66, 0x74, 0x79, 0x70},
-                Offset = 4
+                Bytes = new byte[] {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A},
+                Offset = 0,
             }
         };
     }

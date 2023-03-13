@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Images;
+namespace Dmime.Internal.Signatures.Images;
 
-internal class GifSignature : ISignature
+public class JpegSignature : ISignature
 {
     public string MimeType { get; }
 
@@ -12,15 +11,16 @@ internal class GifSignature : ISignature
 
     public IReadOnlyCollection<string> FileExtensions { get; }
 
-    public GifSignature()
+
+    public JpegSignature()
     {
-        MimeType = "image/gif";
-        FileExtensions = new[] {".gif"};
+        MimeType = "image/jpeg";
+        FileExtensions = new[] {".jpeg", ".jpg", ".jpe"};
         MagicBytes = new[]
         {
             new MagicBytes
             {
-                Bytes = new byte[] {0x47, 0x49, 0x46, 0x38},
+                Bytes = new byte[] {0xff, 0xd8},
                 Offset = 0
             }
         };

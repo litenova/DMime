@@ -3,14 +3,13 @@
 [![NuGet](https://img.shields.io/nuget/vpre/Dmime.svg)](https://www.nuget.org/packages/Dmime)
 [![Coverage Status](https://coveralls.io/repos/github/litenova/DMime/badge.svg?branch=main)](https://coveralls.io/github/litenova/DMime?branch=main)
 
-
 A fast and efficient library to detect a given file's MIME type based on the file content regardless of file extension.
 
-* Written in .NET 5
+* Written in .NET 7
 * No Dependencies
 * No Reflection
 * Easy to Use
-* Supports Popular File Types
+* Supported Types
     * MP4
     * BMP
     * GIF
@@ -52,19 +51,32 @@ and configure your desired as below in the `ConfigureServices` method of `Startu
 
 ## How to Use
 
-### Extension Method 
-Dmime provides a Extension method to `Stream` and `byte[]` types.
+### Extension Method
+
+Install the `DMime` package:
+
+```
+dotnet add package Dmime
+```
+
+Then use the `DetectMimeTypeAsync` or `DetectMimeType` extension methods on any `Stream` type.
 
 ```c#
     // an unkown file without extension
     FileStream stream = File.OpenRead("webp-sample-550w-404h");
 
-    var result = await stream.DetectMimeType(); // result = image/webp
+    var result = await stream.DetectMimeTypeAsync(); // result = image/webp
 ```
 
 ### Dependency
 
-You can inject `IMimeDetector` to your desired services to use DMime
+Install the `Dmime.Extensions.MicrosoftDependencyInjection` package:
+
+```
+dotnet add package Dmime.Extensions.MicrosoftDependencyInjection
+```
+
+Then inject the `IMimeDetector` to your desired class and use the `DetectAsync` or `Detect` methods accordingly.
 
 ```c#
     [ApiController]
@@ -83,7 +95,7 @@ You can inject `IMimeDetector` to your desired services to use DMime
         {
             var streamContent = formFile.OpenReadStream();
                     
-            var result = await _mimeDetector.DetectAsync(streamContent);
+            var result = await _mimeDetector.DetectMimeTypeAsync(streamContent);
 
             return Ok(result);
         }

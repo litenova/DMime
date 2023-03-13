@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Documents;
+namespace Dmime.Internal.Signatures.Images;
 
-public class PdfSignature : ISignature
+internal class BmpSignature : ISignature
 {
     public string MimeType { get; }
 
@@ -12,15 +11,15 @@ public class PdfSignature : ISignature
 
     public IReadOnlyCollection<string> FileExtensions { get; }
 
-    public PdfSignature()
+    public BmpSignature()
     {
-        MimeType = "application/pdf";
-        FileExtensions = new[] {".pdf"};
+        MimeType = "image/bmp";
+        FileExtensions = new[] {".bmp", ".dib"};
         MagicBytes = new[]
         {
             new MagicBytes
             {
-                Bytes = new byte[] {0x25, 0x50, 0x44, 0x46, 0x2d},
+                Bytes = new byte[] {0x42, 0x4D},
                 Offset = 0
             }
         };

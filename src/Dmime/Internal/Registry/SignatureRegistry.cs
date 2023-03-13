@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dmime.Abstractions;
 
-namespace Dmime.Registry;
+namespace Dmime.Internal.Registry;
 
 internal class SignatureRegistry : ISignatureRegistry
 {

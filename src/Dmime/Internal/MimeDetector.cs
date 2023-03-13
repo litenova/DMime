@@ -2,22 +2,21 @@ using System.IO;
 using System.Threading.Tasks;
 using Dmime.Abstractions;
 using Dmime.Exceptions;
-using Dmime.Models;
 
-namespace Dmime.Detector;
+namespace Dmime.Internal;
 
 public class MimeDetector : IMimeDetector
 {
-    private readonly ISignatureRegistry _registry;
+    private readonly ISignatureRegistry _signatureRegistry;
 
-    public MimeDetector(ISignatureRegistry registry)
+    public MimeDetector(ISignatureRegistry signatureRegistry)
     {
-        _registry = registry;
+        _signatureRegistry = signatureRegistry;
     }
 
     public async Task<IDetectionResult> DetectAsync(Stream fileContent)
     {
-        foreach (var signature in _registry)
+        foreach (var signature in _signatureRegistry)
         {
             foreach (var magicByte in signature.MagicBytes)
             {
@@ -28,7 +27,7 @@ public class MimeDetector : IMimeDetector
                 var bytesToDetectType = new byte[numberOfBytesNeededToDetect];
 
                 await fileContent.ReadAsync(bytesToDetectType, 0, numberOfBytesNeededToDetect);
-
+                
                 if (CompareBytes(magicByte.Bytes, bytesToDetectType[magicByte.Offset..]))
                 {
                     return new DetectionResult(signature.FileExtensions, signature.MimeType);
@@ -41,7 +40,7 @@ public class MimeDetector : IMimeDetector
 
     public IDetectionResult Detect(Stream fileContent)
     {
-        foreach (var signature in _registry)
+        foreach (var signature in _signatureRegistry)
         {
             foreach (var magicByte in signature.MagicBytes)
             {
@@ -63,7 +62,7 @@ public class MimeDetector : IMimeDetector
         throw new FileNotDetectedException();
     }
 
-    private bool CompareBytes(byte[] magicBytes, byte[] bytesToDetectType)
+    private static bool CompareBytes(byte[] magicBytes, byte[] bytesToDetectType)
     {
         for (var i = 0; i < magicBytes.Length; i += 1)
         {

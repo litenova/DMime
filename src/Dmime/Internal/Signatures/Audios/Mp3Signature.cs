@@ -1,29 +1,27 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Images;
+namespace Dmime.Internal.Signatures.Audios;
 
-public class JpegSignature : ISignature
+internal class Mp3Signature : ISignature
 {
-    public string MimeType { get; }
-
     public IReadOnlyCollection<IMagicBytes> MagicBytes { get; }
 
     public IReadOnlyCollection<string> FileExtensions { get; }
 
+    public string MimeType { get; set; }
 
-    public JpegSignature()
+    public Mp3Signature()
     {
-        MimeType = "image/jpeg";
-        FileExtensions = new[] {".jpeg", ".jpg", ".jpe"};
         MagicBytes = new[]
         {
             new MagicBytes
             {
-                Bytes = new byte[] {0xff, 0xd8},
+                Bytes = new byte[] {0x49, 0x44, 0x33},
                 Offset = 0
             }
         };
+        MimeType = "audio/mpeg";
+        FileExtensions = new[] {".mp3"};
     }
 }

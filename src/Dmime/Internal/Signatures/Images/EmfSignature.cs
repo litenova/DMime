@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Images;
+namespace Dmime.Internal.Signatures.Images;
 
 public class EmfSignature : ISignature
 {

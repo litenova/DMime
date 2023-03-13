@@ -1,8 +1,8 @@
 using System.IO;
 using System.Threading.Tasks;
 using Dmime.Abstractions;
-using Dmime.Detector;
-using Dmime.Registry;
+using Dmime.Internal;
+using Dmime.Internal.Registry;
 
 namespace Dmime.Extensions;
 

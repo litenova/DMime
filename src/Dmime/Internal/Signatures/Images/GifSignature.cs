@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Images;
+namespace Dmime.Internal.Signatures.Images;
 
-internal class WebpSignature : ISignature
+internal class GifSignature : ISignature
 {
     public string MimeType { get; }
 
@@ -12,17 +11,16 @@ internal class WebpSignature : ISignature
 
     public IReadOnlyCollection<string> FileExtensions { get; }
 
-
-    public WebpSignature()
+    public GifSignature()
     {
-        MimeType = "image/webp";
-        FileExtensions = new[] {".webp"};
+        MimeType = "image/gif";
+        FileExtensions = new[] {".gif"};
         MagicBytes = new[]
         {
             new MagicBytes
             {
-                Bytes = new byte[] {0x52, 0x49, 0x46, 0x46},
-                Offset = 0,
+                Bytes = new byte[] {0x47, 0x49, 0x46, 0x38},
+                Offset = 0
             }
         };
     }

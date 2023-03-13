@@ -1,6 +1,6 @@
 ﻿using Dmime.Abstractions;
-using Dmime.Detector;
-using Dmime.Registry;
+using Dmime.Internal;
+using Dmime.Internal.Registry;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dmime.Extensions.MicrosoftDependencyInjection;

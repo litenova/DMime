@@ -1,11 +1,11 @@
 using Dmime.Abstractions;
-using Dmime.Signatures.Audios;
-using Dmime.Signatures.Documents;
-using Dmime.Signatures.Images;
-using Dmime.Signatures.Others;
-using Dmime.Signatures.Videos;
+using Dmime.Internal.Signatures.Audios;
+using Dmime.Internal.Signatures.Documents;
+using Dmime.Internal.Signatures.Images;
+using Dmime.Internal.Signatures.Others;
+using Dmime.Internal.Signatures.Videos;
 
-namespace Dmime.Registry;
+namespace Dmime.Internal.Registry;
 
 public static class SignatureRegistryAccessor
 {

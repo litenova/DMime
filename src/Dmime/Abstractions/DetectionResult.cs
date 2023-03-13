@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Dmime.Abstractions;
 
-namespace Dmime.Models;
+namespace Dmime.Abstractions;
 
-internal class DetectionResult : IDetectionResult
+public class DetectionResult : IDetectionResult
 {
     public DetectionResult(IEnumerable<string> fileExtensions, string mimeType)
     {

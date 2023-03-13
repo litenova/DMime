@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Dmime.Abstractions;
-using Dmime.Models;
 
-namespace Dmime.Signatures.Others;
+namespace Dmime.Internal.Signatures.Others;
 
 public class ZipSignature : ISignature
 {
